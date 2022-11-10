@@ -16,7 +16,7 @@ export default function List() {
 
   useEffect(() => {
     const url = `https://ghibliapi.herokuapp.com/`;
-  });
+  }, []);
 
   return (
     <div className="list">
