@@ -1,0 +1,11 @@
+select {
+  width: 200px;
+  height: 25px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
