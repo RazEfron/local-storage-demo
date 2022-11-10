@@ -14,6 +14,9 @@ export default function List() {
   const [category, setCategory] = useState("");
   const [data, setData] = useState([]);
 
+  // this state will be used to teach basics of localStorage. Not needed for app.
+  const [name, setName] = useState();
+
   useEffect(() => {
     const url = `https://ghibliapi.herokuapp.com/`;
   }, []);
