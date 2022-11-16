@@ -11,43 +11,31 @@ import { useState, useEffect } from "react";
  */
 
 export default function List() {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("people");
   const [data, setData] = useState([]);
 
   // this state will be used to teach basics of localStorage. Not needed for app.
-  //   const [name, setName] = useState(
-  //     JSON.parse(window.localStorage.getItem("myName")) || ""
-  //   );
+  // const [name, setName] = useState("");
+    // const [name, setName] = useState(
+    //   JSON.parse(window.localStorage.getItem("myName")) || ""
+    // );
 
   useEffect(() => {
-    const url = `https://ghibliapi.herokuapp.com/${category}`;
-    const result = window.localStorage.getItem(category);
-    console.log("useEffect ran");
-
-    if (category.length === 0) return;
-
-    if (result) {
-      // If the data is in my local storage retrieve the data
-      console.log(`Retrieving ${category} data from localStorage `);
-      setData(JSON.parse(result));
-    } else {
-      // data is not in local storage so fetch the data and save it
-      fetch(url)
-        .then((resp) => resp.json())
-        .then((res) => {
-          console.log(`I ran a fetch for ${category}`);
-          //I want to set local storage using my category and saving the data
-          window.localStorage.setItem(category, JSON.stringify(res));
-          // I want to set my state with the data
-          setData(res);
-          // I want to reset the category to prevent an infinite loop
-        });
-    }
-
+    // console.log("name", name);
     //BASIC STORAGE
     // const myName = { first: "JD", last: "Richards" };
 
     // window.localStorage.setItem("myName", JSON.stringify(myName));
+    const url = `https://ghibliapi.herokuapp.com/${category}`;
+
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((res) => {
+        console.log(`I ran a fetch for ${category}`);
+        // I want to set my state with the data
+        setData(res);
+        // I want to reset the category to prevent an infinite loop
+      });
   }, [category]);
 
   return (
